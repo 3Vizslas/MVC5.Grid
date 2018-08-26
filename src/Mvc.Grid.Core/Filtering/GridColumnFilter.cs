@@ -186,7 +186,7 @@ namespace NonFactors.Mvc.Grid
                 case TypeCode.Boolean:
                     return "boolean";
                 default:
-                    return null;
+                    return type == typeof(Guid) ? "guid" : null;
             }
         }
         private IGridFilter GetFilter(String method, String value)

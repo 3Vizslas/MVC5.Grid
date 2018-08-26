@@ -443,6 +443,12 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
+        public void GridColumnFilter_SetsNameForGuid()
+        {
+            AssertFilterNameFor(model => model.GuidField, "guid");
+        }
+
+        [Fact]
         public void GridColumnFilter_SetsNameForNullableEnum()
         {
             AssertFilterNameFor(model => model.NullableEnumField, "enum");
@@ -524,6 +530,12 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void GridColumnFilter_SetsNameForNullableDateTime()
         {
             AssertFilterNameFor(model => model.NullableDateTimeField, "date");
+        }
+
+        [Fact]
+        public void GridColumnFilter_SetsNameForNullableGuid()
+        {
+            AssertFilterNameFor(model => model.NullableGuidField, "guid");
         }
 
         [Fact]
