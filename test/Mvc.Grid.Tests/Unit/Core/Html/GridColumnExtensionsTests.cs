@@ -2,7 +2,6 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Web;
 using System.Web.Mvc;
 using Xunit;
 
@@ -353,37 +352,17 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
         #endregion
 
-        #region Titled<T, TValue>(this IGridColumn<T, TValue> column, Object value)
+        #region Titled<T, TValue>(this IGridColumn<T, TValue> column, Object title)
 
-        [Fact]
-        public void Titled_SetsHtmlContentTitle()
+        [Theory]
+        [InlineData(1)]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("Title")]
+        public void Titled_SetsTitle(Object title)
         {
-            IHtmlString expected = new HtmlString("HtmlContent Title");
-            IHtmlString actual = column.Titled(expected).Title;
-
-            Assert.Same(expected, actual);
-        }
-
-        [Fact]
-        public void Titled_SetsObjectTitle()
-        {
-            String actual = column.Titled(new Object()).Title.ToString();
-            String expected = new Object().ToString();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Titled_SetsNullTitle()
-        {
-            Assert.Null(column.Titled(null).Title.ToString());
-        }
-
-        [Fact]
-        public void Titled_SetsTitle()
-        {
-            String actual = column.Titled("Title").Title.ToString();
-            String expected = "Title";
+            Object expected = title ?? "";
+            Object actual = column.Titled(title).Title;
 
             Assert.Equal(expected, actual);
         }

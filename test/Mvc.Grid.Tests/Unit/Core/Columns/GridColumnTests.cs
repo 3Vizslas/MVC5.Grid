@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Web;
-using System.Web.Mvc;
 using Xunit;
 
 namespace NonFactors.Mvc.Grid.Tests.Unit
@@ -88,15 +87,15 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
-        public void GridColumn_NotMemberExpression_SetsNullTitle()
+        public void GridColumn_NotMemberExpression_SetsEmptyTitle()
         {
-            Assert.Null(new GridColumn<GridModel, Int32>(column.Grid, model => 1).Title.ToString());
+            Assert.Empty(new GridColumn<GridModel, Int32>(column.Grid, model => 1).Title.ToString());
         }
 
         [Fact]
-        public void GridColumn_NoDisplayAttribute_SetsNullTitle()
+        public void GridColumn_NoDisplayAttribute_SetsEmptyTitle()
         {
-            Assert.Null(new GridColumn<GridModel, Object>(column.Grid, model => model.Name).Title.ToString());
+            Assert.Empty(new GridColumn<GridModel, Object>(column.Grid, model => model.Name).Title.ToString());
         }
 
         [Fact]

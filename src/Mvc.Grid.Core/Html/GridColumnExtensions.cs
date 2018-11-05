@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NonFactors.Mvc.Grid
@@ -91,9 +90,9 @@ namespace NonFactors.Mvc.Grid
 
             return column;
         }
-        public static IGridColumn<T, TValue> Titled<T, TValue>(this IGridColumn<T, TValue> column, Object value)
+        public static IGridColumn<T, TValue> Titled<T, TValue>(this IGridColumn<T, TValue> column, Object title)
         {
-            column.Title = value as IHtmlString ?? new HtmlString(value?.ToString());
+            column.Title = title ?? "";
 
             return column;
         }

@@ -34,7 +34,10 @@
                             {
                                 <div>
                                     @{
+                                        String title = (column.Title as String) ?? "";
+                                        Int32 size = title.Length > 0 ? title.Length : 20;
                                         String value = column.Filter.First != null ? column.Filter.First.Value : "";
+
                                         foreach (SelectListItem option in column.Filter.Options)
                                         {
                                             if (column.Filter.First != null && column.Filter.First.Value == option.Value)
@@ -46,7 +49,7 @@
                                         }
                                     }
 
-                                    <input class="mvc-grid-value" value="@value" placeholder="@column.Title" />
+                                    <input class="mvc-grid-value" value="@value" size="@size" placeholder="@column.Title" />
                                 </div>
                             }
                             else
