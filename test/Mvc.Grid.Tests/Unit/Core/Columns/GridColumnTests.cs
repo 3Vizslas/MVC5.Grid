@@ -332,8 +332,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Theory]
-        [InlineData(TestEnum.First, "1st")]
-        [InlineData(TestEnum.Second, "2nd")]
+        [InlineData(TestEnum.First, "First")]
+        [InlineData(TestEnum.Second, "Second")]
         public void ValueFor_NullableEnumExpressionValue(TestEnum value, String expressionValue)
         {
             GridColumn<GridModel, TestEnum?> enumColumn = new GridColumn<GridModel, TestEnum?>(column.Grid, model => model.Enum);
@@ -346,8 +346,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Theory]
-        [InlineData(TestEnum.First, "1st")]
-        [InlineData(TestEnum.Second, "2nd")]
+        [InlineData(TestEnum.First, "First")]
+        [InlineData(TestEnum.Second, "Second")]
         public void ValueFor_EnumExpressionValue(TestEnum value, String expressionValue)
         {
             GridColumn<GridModel, TestEnum> enumColumn = new GridColumn<GridModel, TestEnum>(column.Grid, model => model.Enum);

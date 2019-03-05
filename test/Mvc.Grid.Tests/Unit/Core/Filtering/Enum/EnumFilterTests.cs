@@ -43,7 +43,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Theory]
         [InlineData("", null)]
         [InlineData(null, null)]
-        [InlineData("1", TestEnum.Second)]
+        [InlineData("0", TestEnum.Second)]
         public void Apply_NullableEqualsFilter(String value, TestEnum? test)
         {
             filter.Value = value;
@@ -58,7 +58,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Theory]
         [InlineData("", null)]
         [InlineData(null, null)]
-        [InlineData("1", TestEnum.Second)]
+        [InlineData("0", TestEnum.Second)]
         public void Apply_EqualsFilter(String value, TestEnum? test)
         {
             filter.Value = value;
@@ -73,7 +73,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Theory]
         [InlineData("", null)]
         [InlineData(null, null)]
-        [InlineData("1", TestEnum.Second)]
+        [InlineData("0", TestEnum.Second)]
         public void Apply_NullableNotEqualsFilter(String value, TestEnum? test)
         {
             filter.Value = value;
@@ -88,7 +88,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Theory]
         [InlineData("", null)]
         [InlineData(null, null)]
-        [InlineData("1", TestEnum.Second)]
+        [InlineData("0", TestEnum.Second)]
         public void Apply_NotEqualsFilter(String value, TestEnum? test)
         {
             filter.Value = value;

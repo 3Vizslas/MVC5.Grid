@@ -238,10 +238,10 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Null(actual[0].Text);
             Assert.Null(actual[0].Value);
-            Assert.Equal("0", actual[1].Value);
-            Assert.Equal("1", actual[2].Value);
-            Assert.Equal("1st", actual[1].Text);
-            Assert.Equal("2nd", actual[2].Text);
+            Assert.Equal("1", actual[1].Value);
+            Assert.Equal("0", actual[2].Value);
+            Assert.Equal("First", actual[1].Text);
+            Assert.Equal("Second", actual[2].Text);
         }
 
         [Fact]

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -158,7 +159,7 @@ namespace NonFactors.Mvc.Grid
             else if (type.GetTypeInfo().IsEnum)
             {
                 options.Add(new SelectListItem());
-                options.AddRange(EnumHelper.GetSelectList(type));
+                options.AddRange(EnumHelper.GetSelectList(type).OrderBy(item => item.Text));
             }
 
             return options;
