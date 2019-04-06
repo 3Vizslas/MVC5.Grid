@@ -11,10 +11,8 @@ namespace NonFactors.Mvc.Grid.Tests
         public static HtmlHelper CreateHtmlHelper(String query)
         {
             ViewContext context = CreateViewContext(CreateControllerContext(query));
-            IViewDataContainer data = new ViewPage();
-            data.ViewData = context.ViewData;
 
-            return new HtmlHelper(context, data);
+            return new HtmlHelper(context, new ViewPage { ViewData = context.ViewData });
         }
 
         private static ControllerContext CreateControllerContext(String query)
