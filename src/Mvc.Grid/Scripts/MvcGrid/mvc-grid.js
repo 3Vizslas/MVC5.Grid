@@ -1,5 +1,5 @@
 ﻿/*!
- * Mvc.Grid 6.1.1
+ * Mvc.Grid 6.1.2
  * https://github.com/NonFactors/MVC5.Grid
  *
  * Copyright © NonFactors
@@ -613,7 +613,7 @@ var MvcGridPopup = (function () {
             }
 
             var popup = MvcGridPopup.prototype;
-            if ((!target || e.which == 27) && popup.element.parentNode) {
+            if ((!target || e.which == 27) && popup.element.parentNode && e.target != window) {
                 document.body.removeChild(popup.element);
 
                 if (popup.lastActiveElement) {
