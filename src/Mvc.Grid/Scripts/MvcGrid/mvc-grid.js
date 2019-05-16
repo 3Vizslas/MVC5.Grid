@@ -324,6 +324,7 @@ var MvcGridColumn = (function () {
 
             column.filter = {
                 isApplied: data.filterFirstMethod != '' || data.filterSecondMethod != '',
+                isHidden: header.classList.contains('mvc-grid-hidden'),
                 hasOptions: options && options.children.length > 0,
                 defaultMethod: data.filterDefaultMethod,
                 isMulti: data.filterMulti == 'True',
