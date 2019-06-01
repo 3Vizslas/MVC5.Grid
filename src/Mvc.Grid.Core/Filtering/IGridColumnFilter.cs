@@ -8,9 +8,9 @@ namespace NonFactors.Mvc.Grid
     public interface IGridColumnFilter
     {
         String Name { get; set; }
-        Boolean? IsMulti { get; set; }
         Boolean? IsEnabled { get; set; }
         String DefaultMethod { get; set; }
+        GridFilterType? Type { get; set; }
         IEnumerable<SelectListItem> Options { get; set; }
 
         String Operator { get; set; }
