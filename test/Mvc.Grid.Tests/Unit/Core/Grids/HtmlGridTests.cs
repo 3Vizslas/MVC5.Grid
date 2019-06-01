@@ -1,4 +1,5 @@
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using System;
 using System.Collections.Specialized;
 using System.IO;
@@ -23,6 +24,15 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         #region HtmlGrid(HtmlHelper html, IGrid<T> grid)
+
+        [Fact]
+        public void HtmlGrid_DoesNotChangeQuery()
+        {
+            Object expected = htmlGrid.Grid.Query = new NameValueCollection();
+            Object actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
+
+            Assert.Same(expected, actual);
+        }
 
         [Fact]
         public void HtmlGrid_SetsGridQuery()

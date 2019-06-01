@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using Xunit;
@@ -13,7 +14,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
         public GridPagerTests()
         {
-            pager = new GridPager<GridModel>(new Grid<GridModel>(new GridModel[0]));
+            pager = new GridPager<GridModel>(new Grid<GridModel>(new GridModel[0]) { Query = new NameValueCollection() });
         }
 
         #region TotalPages

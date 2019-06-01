@@ -34,7 +34,6 @@ namespace NonFactors.Mvc.Grid
         public Grid(IEnumerable<T> source)
         {
             Source = source.AsQueryable();
-            Query = new NameValueCollection();
             FilterMode = GridFilterMode.Excel;
             Mode = GridProcessingMode.Automatic;
             Attributes = new GridHtmlAttributes();

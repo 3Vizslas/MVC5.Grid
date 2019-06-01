@@ -85,15 +85,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
-        public void Grid_SetsEmptyQuery()
-        {
-            NameValueCollection actual = new Grid<GridModel>(new GridModel[0]).Query;
-            NameValueCollection expected = new NameValueCollection();
 
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void Grid_SetsColumns()
         {
             Grid<GridModel> grid = new Grid<GridModel>(new GridModel[0]);
