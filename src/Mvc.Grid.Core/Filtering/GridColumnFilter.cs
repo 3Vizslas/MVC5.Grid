@@ -36,7 +36,7 @@ namespace NonFactors.Mvc.Grid
         {
             get
             {
-                if (IsEnabled == true && !OperatorIsSet)
+                if (IsEnabled == true && IsMulti == true && !OperatorIsSet)
                 {
                     String prefix = String.IsNullOrEmpty(Column.Grid.Name) ? "" : Column.Grid.Name + "-";
                     Operator = Column.Grid.Query.GetValues(prefix + Column.Name + "-op")?.FirstOrDefault()?.ToLower();
@@ -75,7 +75,7 @@ namespace NonFactors.Mvc.Grid
         {
             get
             {
-                if (IsEnabled == true && !SecondIsSet)
+                if (IsEnabled == true && IsMulti == true && !SecondIsSet)
                     Second = GetSecondFilter();
 
                 return SecondValue;
