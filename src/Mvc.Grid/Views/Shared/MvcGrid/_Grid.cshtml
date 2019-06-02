@@ -34,9 +34,18 @@
                                         Int32 size = title.Length > 0 ? title.Length : 20;
                                         String[] values = column.Filter.First != null ? column.Filter.First.Values ?? new String[0] : new String[0];
                                         values = column.Filter.Options.Any() ? column.Filter.Options.Where(option => values.Contains(option.Value)).Select(option => option.Text).ToArray() : values;
-                                    }
 
-                                    <input class="mvc-grid-value" value="@String.Join(", ", values)" size="@size" placeholder="@column.Title" />
+                                        if (column.Filter.Options.Any())
+                                        {
+                                            values = column.Filter.Options.Any() ? column.Filter.Options.Where(option => values.Contains(option.Value)).Select(option => option.Text).ToArray() : values;
+
+                                            <input class="mvc-grid-value" value="@String.Join(", ", values)" size="@size" placeholder="@column.Title" tabindex="-1" readonly />
+                                        }
+                                        else
+                                        {
+                                            <input class="mvc-grid-value" value="@String.Join(", ", values)" size="@size" placeholder="@column.Title" />
+                                        }
+                                    }
                                 </div>
                             }
                             else
