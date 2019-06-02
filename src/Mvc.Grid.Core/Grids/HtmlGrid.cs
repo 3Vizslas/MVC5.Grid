@@ -16,7 +16,7 @@ namespace NonFactors.Mvc.Grid
             Grid = grid;
             Html = html;
             PartialViewName = "MvcGrid/_Grid";
-            grid.ViewContext = html.ViewContext;
+            grid.ViewContext = grid.ViewContext ?? html.ViewContext;
             grid.Query = grid.Query ?? new NameValueCollection(grid.ViewContext.HttpContext.Request.QueryString);
         }
 
