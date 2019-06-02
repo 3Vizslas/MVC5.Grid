@@ -66,9 +66,9 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void Options_Get_FromFilters()
         {
             MvcGrid.Filters = Substitute.For<IGridFilters>();
-            MvcGrid.Filters.GetFilterOptions(filter.Column).Returns(new SelectListItem[0]);
+            MvcGrid.Filters.OptionsFor(filter.Column).Returns(new SelectListItem[0]);
 
-            Object expected = MvcGrid.Filters.GetFilterOptions(filter.Column);
+            Object expected = MvcGrid.Filters.OptionsFor(filter.Column);
             Object actual = filter.Options;
 
             Assert.Same(expected, actual);
@@ -78,11 +78,11 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void Options_Get_Caches()
         {
             MvcGrid.Filters = Substitute.For<IGridFilters>();
-            MvcGrid.Filters.GetFilterOptions(filter.Column).Returns(new SelectListItem[0]);
+            MvcGrid.Filters.OptionsFor(filter.Column).Returns(new SelectListItem[0]);
 
             Object options = filter.Options;
 
-            MvcGrid.Filters.GetFilterOptions(filter.Column).Returns(new SelectListItem[0]);
+            MvcGrid.Filters.OptionsFor(filter.Column).Returns(new SelectListItem[0]);
 
             Object actual = filter.Options;
             Object expected = options;

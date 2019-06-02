@@ -1,5 +1,4 @@
 using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using System;
 using System.Collections.Specialized;
 using System.IO;

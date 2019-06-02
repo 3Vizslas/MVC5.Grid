@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Linq;
 using Xunit;
 
@@ -14,7 +13,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             Grid<GridModel> grid = new Grid<GridModel>(new GridModel[0]);
 
-            Object actual = (grid as IGrid).Columns;
+            Object actual = ((IGrid) grid).Columns;
             Object expected = grid.Columns;
 
             Assert.Same(expected, actual);
@@ -29,7 +28,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             Grid<GridModel> grid = new Grid<GridModel>(new GridModel[0]);
 
-            Object actual = (grid as IGrid).Rows;
+            Object actual = ((IGrid) grid).Rows;
             Object expected = grid.Rows;
 
             Assert.Same(expected, actual);

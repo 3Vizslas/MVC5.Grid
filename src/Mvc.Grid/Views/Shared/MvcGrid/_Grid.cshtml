@@ -30,7 +30,7 @@
                             {
                                 <div>
                                     @{
-                                        String title = (column.Title as String) ?? "";
+                                        String title = column.Title as String ?? "";
                                         Int32 size = title.Length > 0 ? title.Length : 20;
                                         String[] values = column.Filter.First != null ? column.Filter.First.Values ?? new String[0] : new String[0];
                                         values = column.Filter.Options.Any() ? column.Filter.Options.Where(option => values.Contains(option.Value)).Select(option => option.Text).ToArray() : values;

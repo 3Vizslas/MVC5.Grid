@@ -197,12 +197,12 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
         #endregion
 
-        #region GetFilterOptions<T, TValue>(IGridColumn<T, TValue> column)
+        #region OptionsFor<T, TValue>(IGridColumn<T, TValue> column)
 
         [Fact]
-        public void GetFilterOptions_ForBoolean()
+        public void OptionsFor_ForBoolean()
         {
-            SelectListItem[] actual = filters.GetFilterOptions<GridModel, Boolean>(null).ToArray();
+            SelectListItem[] actual = filters.OptionsFor<GridModel, Boolean>(null).ToArray();
 
             Assert.Equal(3, actual.Length);
             Assert.Equal("", actual[0].Value);
@@ -214,9 +214,9 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
-        public void GetFilterOptions_ForNullableBoolean()
+        public void OptionsFor_ForNullableBoolean()
         {
-            SelectListItem[] actual = filters.GetFilterOptions<GridModel, Boolean?>(null).ToArray();
+            SelectListItem[] actual = filters.OptionsFor<GridModel, Boolean?>(null).ToArray();
 
             Assert.Equal(3, actual.Length);
             Assert.Equal("", actual[0].Value);
@@ -228,11 +228,11 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
-        public void GetFilterOptions_ForEnum()
+        public void OptionsFor_ForEnum()
         {
             IGridColumn<GridModel, TestEnum> enumColumn = new GridColumn<GridModel, TestEnum>(column.Grid, model => TestEnum.First);
 
-            SelectListItem[] actual = filters.GetFilterOptions(enumColumn).ToArray();
+            SelectListItem[] actual = filters.OptionsFor(enumColumn).ToArray();
 
             Assert.Equal(3, actual.Length);
 
@@ -245,9 +245,9 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
-        public void GetFilterOptions_ForOtherTypes()
+        public void OptionsFor_ForOtherTypes()
         {
-            Assert.Empty(filters.GetFilterOptions<GridModel, String>(null));
+            Assert.Empty(filters.OptionsFor<GridModel, String>(null));
         }
 
         #endregion
