@@ -10,7 +10,7 @@ namespace NonFactors.Mvc.Grid
         Func<String> BooleanFalseOptionText { get; set; }
         Func<String> BooleanEmptyOptionText { get; set; }
 
-        IGridFilter GetFilter(Type type, String method);
+        IGridFilter Create(Type type, String method, String[] values);
         IEnumerable<SelectListItem> GetFilterOptions<T, TValue>(IGridColumn<T, TValue> column);
 
         void Register(Type type, String method, Type filter);

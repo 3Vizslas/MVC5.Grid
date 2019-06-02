@@ -138,58 +138,58 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [InlineData(typeof(Guid), "not-equals", typeof(GuidFilter))]
         public void GridFilters_RegistersDefaultFilters(Type type, String method, Type filter)
         {
-            Assert.IsType(filter, new GridFilters().GetFilter(type, method));
+            Assert.IsType(filter, new GridFilters().Create(type, method, new String[0]));
         }
 
         #endregion
 
-        #region GetFilter(Type type, String method)
+        #region Create(Type type, String method, StringValues values)
 
         [Fact]
-        public void GetFilter_NotFoundForType_ReturnsNull()
+        public void Create_NotFoundForType_ReturnsNull()
         {
-            Assert.Null(filters.GetFilter(typeof(Object), "equals"));
+            Assert.Null(filters.Create(typeof(Object), "equals", new String[0]));
         }
 
         [Fact]
-        public void GetFilter_NotFoundFilterType_ReturnsNull()
+        public void Create_NotFoundFilterType_ReturnsNull()
         {
-            Assert.Null(filters.GetFilter(typeof(String), "less-than"));
+            Assert.Null(filters.Create(typeof(String), "less-than", new String[0]));
         }
 
         [Fact]
-        public void GetFilter_ForNullableType()
+        public void Create_ForNullableType()
         {
-            IGridFilter actual = filters.GetFilter(typeof(Int32?), "EQUALS");
+            IGridFilter actual = filters.Create(typeof(Int32?), "EQUALS", new String[0]);
 
             Assert.IsType<NumberFilter<Int32>>(actual);
             Assert.Equal("equals", actual.Method);
         }
 
         [Fact]
-        public void GetFilter_ForSpecificEnumType()
+        public void Create_ForSpecificEnumType()
         {
             filters.Register(typeof(TestEnum), "equals", typeof(StringEqualsFilter));
 
-            IGridFilter actual = filters.GetFilter(typeof(TestEnum), "EQUALS");
+            IGridFilter actual = filters.Create(typeof(TestEnum), "EQUALS", new String[0]);
 
             Assert.IsType<StringEqualsFilter>(actual);
             Assert.Equal("equals", actual.Method);
         }
 
         [Fact]
-        public void GetFilter_ForEnumType()
+        public void Create_ForEnumType()
         {
-            IGridFilter actual = filters.GetFilter(typeof(TestEnum), "EQUALS");
+            IGridFilter actual = filters.Create(typeof(TestEnum), "EQUALS", new String[0]);
 
             Assert.Equal("equals", actual.Method);
             Assert.IsType<EnumFilter>(actual);
         }
 
         [Fact]
-        public void GetFilter_ForType()
+        public void Create_ForType()
         {
-            IGridFilter actual = filters.GetFilter(typeof(String), "CONTAINS");
+            IGridFilter actual = filters.Create(typeof(String), "CONTAINS", new String[0]);
 
             Assert.IsType<StringContainsFilter>(actual);
             Assert.Equal("contains", actual.Method);
@@ -260,7 +260,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             filters.Register(typeof(Int32), "TEST", typeof(Object));
             filters.Register(typeof(Int32), "TEST-FILTER", typeof(StringEqualsFilter));
 
-            Assert.IsType<StringEqualsFilter>(filters.GetFilter(typeof(Int32), "test-filter"));
+            Assert.IsType<StringEqualsFilter>(filters.Create(typeof(Int32), "test-filter", new String[0]));
         }
 
         [Fact]
@@ -269,7 +269,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             filters.Register(typeof(Int32), "TEST", typeof(Object));
             filters.Register(typeof(Int32?), "TEST-FILTER", typeof(StringEqualsFilter));
 
-            Assert.IsType<StringEqualsFilter>(filters.GetFilter(typeof(Int32), "test-filter"));
+            Assert.IsType<StringEqualsFilter>(filters.Create(typeof(Int32), "test-filter", new String[0]));
         }
 
         [Fact]
@@ -278,7 +278,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             filters.Register(typeof(Int32), "test-filter", typeof(Object));
             filters.Register(typeof(Int32?), "TEST-filter", typeof(NumberFilter<Int32>));
 
-            Assert.IsType<NumberFilter<Int32>>(filters.GetFilter(typeof(Int32), "test-filter"));
+            Assert.IsType<NumberFilter<Int32>>(filters.Create(typeof(Int32), "test-filter", new String[0]));
         }
 
         [Fact]
@@ -287,7 +287,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             filters.Register(typeof(Int32), "test-filter", typeof(Object));
             filters.Register(typeof(Int32), "TEST-filter", typeof(NumberFilter<Int32>));
 
-            Assert.IsType<NumberFilter<Int32>>(filters.GetFilter(typeof(Int32), "test-filter"));
+            Assert.IsType<NumberFilter<Int32>>(filters.Create(typeof(Int32), "test-filter", new String[0]));
         }
 
         [Fact]
@@ -295,7 +295,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             filters.Register(typeof(Int32?), "TEST", typeof(NumberFilter<Int32>));
 
-            Assert.IsType<NumberFilter<Int32>>(filters.GetFilter(typeof(Int32), "test"));
+            Assert.IsType<NumberFilter<Int32>>(filters.Create(typeof(Int32), "test", new String[0]));
         }
 
         [Fact]
@@ -303,7 +303,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             filters.Register(typeof(Object), "test", typeof(NumberFilter<Int32>));
 
-            Assert.IsType<NumberFilter<Int32>>(filters.GetFilter(typeof(Object), "test"));
+            Assert.IsType<NumberFilter<Int32>>(filters.Create(typeof(Object), "test", new String[0]));
         }
 
         #endregion
@@ -317,7 +317,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             filters.Unregister(typeof(Object), "TEST");
 
-            Assert.Null(filters.GetFilter(typeof(Object), "test"));
+            Assert.Null(filters.Create(typeof(Object), "test", new String[0]));
         }
 
         [Fact]
@@ -328,7 +328,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             filters.Unregister(typeof(Object), "test");
             filters.Unregister(typeof(Object), "test");
 
-            Assert.Null(filters.GetFilter(typeof(Object), "test"));
+            Assert.Null(filters.Create(typeof(Object), "test", new String[0]));
         }
 
         #endregion

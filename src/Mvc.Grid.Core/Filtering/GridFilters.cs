@@ -125,7 +125,7 @@ namespace NonFactors.Mvc.Grid
             Register(typeof(Guid), "not-equals", typeof(GuidFilter));
         }
 
-        public virtual IGridFilter GetFilter(Type type, String method)
+        public virtual IGridFilter Create(Type type, String method, String[] values)
         {
             type = Nullable.GetUnderlyingType(type) ?? type;
 
@@ -142,6 +142,7 @@ namespace NonFactors.Mvc.Grid
 
             IGridFilter filter = (IGridFilter)Activator.CreateInstance(filterType);
             filter.Method = method.ToLower();
+            filter.Values = values;
 
             return filter;
         }

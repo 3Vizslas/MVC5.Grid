@@ -32,20 +32,11 @@
                                     @{
                                         String title = (column.Title as String) ?? "";
                                         Int32 size = title.Length > 0 ? title.Length : 20;
-                                        String value = column.Filter.First != null ? column.Filter.First.Value : "";
-
-                                        foreach (SelectListItem option in column.Filter.Options)
-                                        {
-                                            if (column.Filter.First != null && column.Filter.First.Value == option.Value)
-                                            {
-                                                value = option.Text;
-
-                                                break;
-                                            }
-                                        }
+                                        String[] values = column.Filter.First != null ? column.Filter.First.Values ?? new String[0] : new String[0];
+                                        values = column.Filter.Options.Any() ? column.Filter.Options.Where(option => values.Contains(option.Value)).Select(option => option.Text).ToArray() : values;
                                     }
 
-                                    <input class="mvc-grid-value" value="@value" size="@size" placeholder="@column.Title" />
+                                    <input class="mvc-grid-value" value="@String.Join(", ", values)" size="@size" placeholder="@column.Title" />
                                 </div>
                             }
                             else
@@ -89,6 +80,7 @@
                         if (column.Filter.IsEnabled == true)
                         {
                             String filterApplied = (column.Filter.First ?? column.Filter.Second) != null ? "applied" : "";
+
                             <th class="filterable @column.CssClasses @hidden">
                                 <div>
                                     @if (column.Filter.Options.Any())
@@ -96,7 +88,7 @@
                                         <select class="mvc-grid-value">
                                             @foreach (SelectListItem option in column.Filter.Options)
                                             {
-                                                if (column.Filter.First != null && column.Filter.First.Value == option.Value)
+                                                if (column.Filter.First != null && column.Filter.First.Values.Contains(option.Value))
                                                 {
                                                     <option value="@option.Value" selected>@option.Text</option>
                                                 }
@@ -109,7 +101,7 @@
                                     }
                                     else
                                     {
-                                        <input class="mvc-grid-value" value="@(column.Filter.First != null ? column.Filter.First.Value : "")" />
+                                        <input class="mvc-grid-value" value="@(column.Filter.First != null ? column.Filter.First.Values[0] : "")" />
                                     }
 
                                     <button type="button" class="mvc-grid-filter @filterApplied"></button>

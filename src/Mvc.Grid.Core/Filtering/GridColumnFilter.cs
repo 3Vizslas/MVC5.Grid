@@ -151,10 +151,12 @@ namespace NonFactors.Mvc.Grid
             if (keys.Length == 0)
                 return null;
 
-            String value = Column.Grid.Query.GetValues(keys[0])[0];
             String method = keys[0].Substring(columnName.Length);
 
-            return GetFilter(method, value);
+            if (Type == GridFilterType.Multi)
+                return CreateFilter(method, Column.Grid.Query.GetValues(keys[0]));
+
+            return CreateFilter(method, Column.Grid.Query.GetValues(keys[0]).FirstOrDefault());
         }
         private IGridFilter GetSecondFilter()
         {
@@ -171,13 +173,13 @@ namespace NonFactors.Mvc.Grid
                 if (values.Length < 2)
                     return null;
 
-                return GetFilter(keys[0].Substring(columnName.Length), values[1]);
+                return CreateFilter(keys[0].Substring(columnName.Length), values[1]);
             }
 
             String value = Column.Grid.Query.GetValues(keys[1])[0];
             String method = keys[1].Substring(columnName.Length);
 
-            return GetFilter(method, value);
+            return CreateFilter(method, value);
         }
         private String[] GetFilterKeys(String columnName)
         {
@@ -189,15 +191,6 @@ namespace NonFactors.Mvc.Grid
                     (key ?? "").StartsWith(columnName, StringComparison.OrdinalIgnoreCase) &&
                     !key.Equals(columnName + "op", StringComparison.OrdinalIgnoreCase))
                 .ToArray();
-        }
-        private IGridFilter GetFilter(String method, String value)
-        {
-            IGridFilter filter = GetFilters().GetFilter(typeof(TValue), method);
-
-            if (filter != null)
-                filter.Value = value;
-
-            return filter;
         }
 
         private Expression CreateFilterExpression()
@@ -219,6 +212,10 @@ namespace NonFactors.Mvc.Grid
         private Expression<Func<T, Boolean>> ToLambda(Expression expression)
         {
             return Expression.Lambda<Func<T, Boolean>>(expression, Column.Expression.Parameters[0]);
+        }
+        private IGridFilter CreateFilter(String method, params String[] values)
+        {
+            return GetFilters().Create(typeof(TValue), method, values);
         }
     }
 }
