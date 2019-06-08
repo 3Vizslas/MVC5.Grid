@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace NonFactors.Mvc.Grid
 {
@@ -85,7 +86,7 @@ namespace NonFactors.Mvc.Grid
         }
         public static IHtmlGrid<T> Named<T>(this IHtmlGrid<T> html, String name)
         {
-            html.Grid.Name = name;
+            html.Grid.Name = String.Join("-", Regex.Split((name ?? "").Replace("_", "-"), "(?<=[a-zA-Z])(?=[A-Z])")).ToLower().Trim();
 
             return html;
         }
