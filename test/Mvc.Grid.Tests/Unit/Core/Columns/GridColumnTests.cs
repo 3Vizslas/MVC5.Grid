@@ -1,4 +1,4 @@
-using NSubstitute;
+﻿using NSubstitute;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -345,8 +345,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Theory]
-        [InlineData(TestEnum.First, "First")]
-        [InlineData(TestEnum.Second, "Second")]
+        [InlineData(TestEnum.First, "1st")]
+        [InlineData(TestEnum.Second, "2nd")]
         public void ValueFor_NullableEnumExpressionValue(TestEnum value, String expressionValue)
         {
             GridColumn<GridModel, TestEnum?> enumColumn = new GridColumn<GridModel, TestEnum?>(column.Grid, model => model.Enum);
@@ -359,8 +359,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Theory]
-        [InlineData(TestEnum.First, "First")]
-        [InlineData(TestEnum.Second, "Second")]
+        [InlineData(TestEnum.First, "1st")]
+        [InlineData(TestEnum.Second, "2nd")]
         public void ValueFor_EnumExpressionValue(TestEnum value, String expressionValue)
         {
             GridColumn<GridModel, TestEnum> enumColumn = new GridColumn<GridModel, TestEnum>(column.Grid, model => model.Enum);

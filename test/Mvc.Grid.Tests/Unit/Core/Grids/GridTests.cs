@@ -84,7 +84,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         }
 
         [Fact]
-
         public void Grid_SetsColumns()
         {
             Grid<GridModel> grid = new Grid<GridModel>(new GridModel[0]);

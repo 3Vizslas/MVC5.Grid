@@ -10,7 +10,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void GridHtmlAttributes_Empty()
         {
-            Assert.Empty(new GridHtmlAttributes().ToHtmlString());
+            Assert.Empty(new GridHtmlAttributes());
         }
 
         #endregion
@@ -20,8 +20,14 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void GridHtmlAttributes_ChangesUnderscoresToDashes()
         {
-            String actual = new GridHtmlAttributes(new { id = "", data_null = (String)null, data_temp = 10000, src = "test.png" }).ToHtmlString();
-            String expected = " id=\"\" data-null=\"\" data-temp=\"10000\" src=\"test.png\"";
+            String expected = " id=\"\" src=\"test.png\" data-temp=\"10000\" data-null=\"\"";
+            String actual = new GridHtmlAttributes(new
+            {
+                id = "",
+                src = "test.png",
+                data_temp = 10000,
+                data_null = (String)null
+            }).ToHtmlString();
 
             Assert.Equal(expected, actual);
         }

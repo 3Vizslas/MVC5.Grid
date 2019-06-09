@@ -249,8 +249,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             IGridFilter actual = filter.First;
 
             Assert.Equal(typeof(StringEqualsFilter), actual.GetType());
-            Assert.Equal("equals", actual.Method);
             Assert.Equal(value, actual.Values.Single());
+            Assert.Equal("equals", actual.Method);
         }
 
         [Fact]
@@ -330,8 +330,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [InlineData("grid", "grid-name-equals=a&grid-name-eq=b")]
         public void Second_Get_NotFoundReturnNull(String name, String query)
         {
-            filter.Type = GridFilterType.Double;
             filter.Column.Grid.Name = name;
+            filter.Type = GridFilterType.Double;
             filter.Column.Grid.Query = HttpUtility.ParseQueryString(query);
 
             Assert.Null(filter.Second);
@@ -361,15 +361,15 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [InlineData("grid", "GRID-NAME-CONTAINS=A&GRID-NAME-EQUALS=B&GRID-NAME-OP=OR", "B")]
         public void Second_Get_FromQuery(String name, String query, String value)
         {
-            filter.Type = GridFilterType.Double;
             filter.Column.Grid.Name = name;
+            filter.Type = GridFilterType.Double;
             filter.Column.Grid.Query = HttpUtility.ParseQueryString(query);
 
             IGridFilter actual = filter.Second;
 
             Assert.Equal(typeof(StringEqualsFilter), actual.GetType());
-            Assert.Equal("equals", actual.Method);
             Assert.Equal(value, actual.Values.Single());
+            Assert.Equal("equals", actual.Method);
         }
 
         [Fact]
@@ -385,8 +385,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             IGridFilter actual = filter.Second;
 
             Assert.Equal(typeof(StringEqualsFilter), actual.GetType());
-            Assert.Equal("equals", actual.Method);
             Assert.Equal("b", actual.Values.Single());
+            Assert.Equal("equals", actual.Method);
             Assert.Same(expected, actual);
         }
 

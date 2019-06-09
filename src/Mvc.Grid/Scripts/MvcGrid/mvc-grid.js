@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * Mvc.Grid 7.0.0
  * https://github.com/NonFactors/MVC5.Grid
  *
@@ -306,6 +306,7 @@ var MvcGrid = (function () {
 
         dispatchEvent: function (type, detail) {
             var event;
+
             if (typeof Event === 'function') {
                 event = new CustomEvent(type, {
                     detail: detail,

@@ -3,19 +3,21 @@
   <PropertyGroup>
     <Version>7.0.0</Version>
     <DebugType>Full</DebugType>
+    <Company>NonFactors</Company>
     <TargetFramework>net45</TargetFramework>
     <GenerateFullPaths>true</GenerateFullPaths>
+    <Copyright>Copyright © NonFactors</Copyright>
     <RootNamespace>NonFactors.Mvc.Grid</RootNamespace>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.1.0" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.1.0" />
   </ItemGroup>
 
 </Project>

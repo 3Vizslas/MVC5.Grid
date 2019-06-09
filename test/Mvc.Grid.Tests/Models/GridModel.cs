@@ -65,10 +65,10 @@ namespace NonFactors.Mvc.Grid.Tests
 
     public enum TestEnum
     {
-        [Display(Name = "Second")]
-        Second,
+        [Display(Name = "1st")]
+        First,
 
-        [Display(Name = "First")]
-        First
+        [Display(Name = "2nd")]
+        Second
     }
 }

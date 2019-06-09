@@ -1,4 +1,4 @@
-using NSubstitute;
+﻿using NSubstitute;
 using System;
 using System.Collections.Specialized;
 using System.IO;

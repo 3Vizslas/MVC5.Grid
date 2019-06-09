@@ -15,7 +15,7 @@ namespace NonFactors.Mvc.Grid
 
         ViewContext ViewContext { get; set; }
         GridProcessingMode Mode { get; set; }
-        GridFilterMode FilterMode { get;set; }
+        GridFilterMode FilterMode { get; set; }
         NameValueCollection Query { get; set; }
         String FooterPartialViewName { get; set; }
         GridHtmlAttributes Attributes { get; set; }

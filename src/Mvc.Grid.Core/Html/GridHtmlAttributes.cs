@@ -24,10 +24,11 @@ namespace NonFactors.Mvc.Grid
             {
                 html.Append(" ");
                 html.Append(attribute.Key);
-
                 html.Append("=\"");
 
-                html.Append(WebUtility.HtmlEncode(attribute.Value?.ToString()));
+                if (attribute.Value != null)
+                    html.Append(WebUtility.HtmlEncode(attribute.Value.ToString()));
+
                 html.Append("\"");
             }
 
