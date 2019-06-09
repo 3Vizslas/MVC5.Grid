@@ -36,14 +36,10 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void HtmlGrid_SetsGridQuery()
         {
-            NameValueCollection expected = htmlGrid.Html.ViewContext.HttpContext.Request.QueryString;
-            NameValueCollection actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
+            Object expected = htmlGrid.Html.ViewContext.HttpContext.Request.QueryString;
+            Object actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
 
-            foreach (String key in expected)
-                Assert.Equal(expected[key], actual[key]);
-
-            Assert.Equal(expected.AllKeys, actual.AllKeys);
-            Assert.NotSame(expected, actual);
+            Assert.Same(expected, actual);
         }
 
         [Fact]
