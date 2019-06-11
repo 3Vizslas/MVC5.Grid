@@ -22,12 +22,14 @@ namespace NonFactors.Mvc.Grid
             StringBuilder html = new StringBuilder();
             foreach (KeyValuePair<String, Object> attribute in this)
             {
+                if (attribute.Value == null)
+                    continue;
+
                 html.Append(" ");
                 html.Append(attribute.Key);
                 html.Append("=\"");
 
-                if (attribute.Value != null)
-                    html.Append(WebUtility.HtmlEncode(attribute.Value.ToString()));
+                html.Append(WebUtility.HtmlEncode(attribute.Value.ToString()));
 
                 html.Append("\"");
             }

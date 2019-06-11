@@ -20,7 +20,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void GridHtmlAttributes_ChangesUnderscoresToDashes()
         {
-            String expected = " id=\"\" src=\"test.png\" data-temp=\"10000\" data-null=\"\"";
+            String expected = " id=\"\" src=\"test.png\" data-temp=\"10000\"";
             String actual = new GridHtmlAttributes(new
             {
                 id = "",
