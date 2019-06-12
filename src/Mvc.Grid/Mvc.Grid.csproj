@@ -5,6 +5,7 @@
     <DebugType>Full</DebugType>
     <Company>NonFactors</Company>
     <TargetFramework>net45</TargetFramework>
+    <PackageId>NonFactors.Grid.Mvc5</PackageId>
     <GenerateFullPaths>true</GenerateFullPaths>
     <Copyright>Copyright © NonFactors</Copyright>
     <RootNamespace>NonFactors.Mvc.Grid</RootNamespace>

@@ -7,6 +7,7 @@
     <TargetFramework>net45</TargetFramework>
     <GenerateFullPaths>true</GenerateFullPaths>
     <Copyright>Copyright © NonFactors</Copyright>
+    <PackageId>NonFactors.Grid.Core.Mvc5</PackageId>
     <RootNamespace>NonFactors.Mvc.Grid</RootNamespace>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
