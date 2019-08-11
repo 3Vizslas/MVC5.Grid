@@ -53,6 +53,10 @@
     display: none;
 }
 
+.mvc-title {
+    display: inline-block;
+}
+
 .mvc-grid-sort,
 .mvc-grid-filter {
     background-color: rgba(0, 0, 0, 0.03);
