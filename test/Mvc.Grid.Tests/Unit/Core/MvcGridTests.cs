@@ -5,8 +5,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 {
     public class MvcGridTests
     {
-        #region MvcGrid()
-
         [Fact]
         public void MvcGrid_SetsFiltersToDefaultImplementation()
         {
@@ -15,7 +13,5 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

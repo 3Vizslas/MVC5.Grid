@@ -17,8 +17,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             pager = new GridPager<GridModel>(new Grid<GridModel>(new GridModel[0]) { Query = new NameValueCollection() });
         }
 
-        #region TotalPages
-
         [Theory]
         [InlineData(0, 0, 0)]
         [InlineData(0, 1, 0)]
@@ -40,10 +38,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region CurrentPage
 
         [Theory]
         [InlineData("", "")]
@@ -136,10 +130,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region RowsPerPage
 
         [Theory]
         [InlineData("", "")]
@@ -258,10 +248,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region FirstDisplayPage
-
         [Theory]
         [InlineData(1, 1, 1)]
         [InlineData(1, 2, 2)]
@@ -305,10 +291,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region GridPager(IGrid<T> grid)
 
         [Fact]
         public void GridPager_SetsGrid()
@@ -373,10 +355,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region Process(IQueryable<T> items)
-
         [Fact]
         public void Process_SetsTotalRows()
         {
@@ -413,7 +391,5 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

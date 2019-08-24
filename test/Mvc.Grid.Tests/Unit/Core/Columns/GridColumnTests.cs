@@ -30,8 +30,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             MvcGrid.Filters = oldFilters;
         }
 
-        #region IGridColumn.Sort
-
         [Fact]
         public void IGridColumn_ReturnsSort()
         {
@@ -43,10 +41,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region IGridColumn.Filter
-
         [Fact]
         public void IGridColumn_ReturnsFilter()
         {
@@ -57,10 +51,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region GridColumn(IGrid<T> grid, Expression<Func<T, TValue>> expression)
 
         [Fact]
         public void GridColumn_SetsGrid()
@@ -194,10 +184,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.Null(actual.Name);
         }
 
-        #endregion
-
-        #region Process(IQueryable<T> items)
-
         [Fact]
         public void Process_ReturnsFilteredAndSortedItems()
         {
@@ -216,10 +202,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region ValueFor(IGridRow<Object> row)
 
         [Fact]
         public void ValueFor_NullReferenceInExpressionValue_ReturnsEmpty()
@@ -390,7 +372,5 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

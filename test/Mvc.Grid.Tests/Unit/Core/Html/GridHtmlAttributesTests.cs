@@ -5,17 +5,11 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 {
     public class GridHtmlAttributesTests
     {
-        #region GridHtmlAttributes()
-
         [Fact]
         public void GridHtmlAttributes_Empty()
         {
             Assert.Empty(new GridHtmlAttributes());
         }
-
-        #endregion
-
-        #region GridHtmlAttributes(Object htmlAttributes)
 
         [Fact]
         public void GridHtmlAttributes_ChangesUnderscoresToDashes()
@@ -32,10 +26,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region WriteTo(TextWriter writer, HtmlEncoder encoder)
-
         [Fact]
         public void WriteTo_EncodesValues()
         {
@@ -44,7 +34,5 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

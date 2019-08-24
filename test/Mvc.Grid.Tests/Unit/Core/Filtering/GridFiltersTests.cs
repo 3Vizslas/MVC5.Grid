@@ -17,8 +17,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             column = new GridColumn<GridModel, String>(grid, model => model.Name);
         }
 
-        #region GridFilters()
-
         [Fact]
         public void GridFilters_SetEmptyBooleanText()
         {
@@ -141,10 +139,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.IsType(filter, new GridFilters().Create(type, method, new String[0]));
         }
 
-        #endregion
-
-        #region Create(Type type, String method, StringValues values)
-
         [Fact]
         public void Create_NotFoundForType_ReturnsNull()
         {
@@ -194,10 +188,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.IsType<StringContainsFilter>(actual);
             Assert.Equal("contains", actual.Method);
         }
-
-        #endregion
-
-        #region OptionsFor<T, TValue>(IGridColumn<T, TValue> column)
 
         [Fact]
         public void OptionsFor_ForBoolean()
@@ -249,10 +239,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             Assert.Empty(filters.OptionsFor<GridModel, String>(null));
         }
-
-        #endregion
-
-        #region Register(Type type, String method, Type filter)
 
         [Fact]
         public void Register_FilterForExistingType()
@@ -306,10 +292,6 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             Assert.IsType<NumberFilter<Int32>>(filters.Create(typeof(Object), "test", new String[0]));
         }
 
-        #endregion
-
-        #region Unregister(Type type, String method)
-
         [Fact]
         public void Unregister_ExistingFilter()
         {
@@ -330,7 +312,5 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             Assert.Null(filters.Create(typeof(Object), "test", new String[0]));
         }
-
-        #endregion
     }
 }
