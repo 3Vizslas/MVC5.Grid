@@ -16,14 +16,14 @@ namespace NonFactors.Mvc.Grid
 
         public String Name { get; set; }
         public Object Title { get; set; }
-        public String Format { get; set; }
+        public String? Format { get; set; }
         public Boolean IsHidden { get; set; }
         public String CssClasses { get; set; }
         public Boolean IsEncoded { get; set; }
         public GridProcessorType ProcessorType { get; set; }
 
         public Func<T, TValue> ExpressionValue { get; set; }
-        public Func<T, Int32, Object> RenderValue { get; set; }
+        public Func<T, Int32, Object?>? RenderValue { get; set; }
         public Expression<Func<T, TValue>> Expression { get; set; }
 
         IGridColumnSort IGridColumn.Sort => Sort;
@@ -35,6 +35,7 @@ namespace NonFactors.Mvc.Grid
         public GridColumn(IGrid<T> grid, Expression<Func<T, TValue>> expression)
         {
             Grid = grid;
+            CssClasses = "";
             IsEncoded = true;
             Expression = expression;
             Name = NameFor(expression);
@@ -51,7 +52,7 @@ namespace NonFactors.Mvc.Grid
         }
         public virtual IHtmlString ValueFor(IGridRow<Object> row)
         {
-            Object value = ColumnValueFor(row);
+            Object? value = ColumnValueFor(row);
 
             if (value == null)
                 return MvcHtmlString.Empty;
@@ -70,8 +71,8 @@ namespace NonFactors.Mvc.Grid
 
         private String TitleFor(Expression<Func<T, TValue>> expression)
         {
-            MemberExpression body = expression.Body as MemberExpression;
-            DisplayAttribute display = body?.Member.GetCustomAttribute<DisplayAttribute>();
+            MemberExpression? body = expression.Body as MemberExpression;
+            DisplayAttribute? display = body?.Member.GetCustomAttribute<DisplayAttribute>();
 
             return display?.GetShortName() ?? "";
         }
@@ -83,25 +84,25 @@ namespace NonFactors.Mvc.Grid
 
             return String.Join("-", Regex.Split(text, "(?<=[a-zA-Z])(?=[A-Z])")).ToLower();
         }
-        private Object ColumnValueFor(IGridRow<Object> row)
+        private Object? ColumnValueFor(IGridRow<Object> row)
         {
             try
             {
                 if (RenderValue != null)
-                    return RenderValue(row.Model as T, row.Index);
+                    return RenderValue((T)row.Model, row.Index);
 
                 Type type = Nullable.GetUnderlyingType(typeof(TValue)) ?? typeof(TValue);
                 if (type.GetTypeInfo().IsEnum)
-                    return EnumValue(type, ExpressionValue(row.Model as T).ToString());
+                    return EnumValue(type, ExpressionValue((T)row.Model)?.ToString()!);
 
-                return ExpressionValue(row.Model as T);
+                return ExpressionValue((T)row.Model);
             }
             catch (NullReferenceException)
             {
                 return null;
             }
         }
-        private String EnumValue(Type type, String value)
+        private String? EnumValue(Type type, String value)
         {
             return type
                 .GetMember(value)

@@ -25,8 +25,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void HtmlGrid_DoesNotChangeQuery()
         {
-            Object expected = htmlGrid.Grid.Query = new NameValueCollection();
-            Object actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
+            Object? expected = htmlGrid.Grid.Query = new NameValueCollection();
+            Object? actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
 
             Assert.Same(expected, actual);
         }
@@ -34,8 +34,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void HtmlGrid_SetsGridQuery()
         {
-            Object expected = htmlGrid.Html.ViewContext.HttpContext.Request.QueryString;
-            Object actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
+            Object? expected = htmlGrid.Html.ViewContext.HttpContext.Request.QueryString;
+            Object? actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.Query;
 
             Assert.Same(expected, actual);
         }
@@ -45,8 +45,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             htmlGrid.Grid.ViewContext = new ViewContext();
 
-            Object expected = htmlGrid.Grid.ViewContext;
-            Object actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.ViewContext;
+            Object? expected = htmlGrid.Grid.ViewContext;
+            Object? actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.ViewContext;
 
             Assert.Same(expected, actual);
         }
@@ -56,8 +56,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             htmlGrid.Grid.ViewContext = null;
 
-            Object expected = htmlGrid.Html.ViewContext;
-            Object actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.ViewContext;
+            Object? expected = htmlGrid.Html.ViewContext;
+            Object? actual = new HtmlGrid<GridModel>(htmlGrid.Html, htmlGrid.Grid).Grid.ViewContext;
 
             Assert.Same(expected, actual);
         }

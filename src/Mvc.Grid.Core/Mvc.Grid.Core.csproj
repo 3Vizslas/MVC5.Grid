@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <Version>7.1.0</Version>
+    <Nullable>enable</Nullable>
     <DebugType>Full</DebugType>
     <Company>NonFactors</Company>
     <LangVersion>8.0</LangVersion>

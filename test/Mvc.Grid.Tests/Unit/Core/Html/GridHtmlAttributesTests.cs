@@ -20,7 +20,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
                 id = "",
                 src = "test.png",
                 data_temp = 10000,
-                data_null = (String)null
+                data_null = (String?)null
             }).ToHtmlString();
 
             Assert.Equal(expected, actual);

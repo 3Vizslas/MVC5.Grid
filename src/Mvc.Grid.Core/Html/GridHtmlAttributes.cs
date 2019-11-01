@@ -7,12 +7,12 @@ using System.Web.Mvc;
 
 namespace NonFactors.Mvc.Grid
 {
-    public class GridHtmlAttributes : Dictionary<String, Object>, IHtmlString
+    public class GridHtmlAttributes : Dictionary<String, Object?>, IHtmlString
     {
         public GridHtmlAttributes()
         {
         }
-        public GridHtmlAttributes(Object attributes)
+        public GridHtmlAttributes(Object? attributes)
             : base(HtmlHelper.AnonymousObjectToHtmlAttributes(attributes))
         {
         }
@@ -20,7 +20,7 @@ namespace NonFactors.Mvc.Grid
         public String ToHtmlString()
         {
             StringBuilder html = new StringBuilder();
-            foreach (KeyValuePair<String, Object> attribute in this)
+            foreach (KeyValuePair<String, Object?> attribute in this)
             {
                 if (attribute.Value == null)
                     continue;

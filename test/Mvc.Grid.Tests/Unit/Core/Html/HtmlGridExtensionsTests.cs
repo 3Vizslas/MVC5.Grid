@@ -53,7 +53,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void UsingSourceUrl_ReturnsHtmlGrid()
         {
             Object expected = htmlGrid;
-            Object actual = htmlGrid.UsingSourceUrl(null);
+            Object actual = htmlGrid.UsingSourceUrl("");
 
             Assert.Same(expected, actual);
         }
@@ -148,8 +148,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void RowAttributed_SetsRowAttributes()
         {
-            Func<GridModel, Object> expected = (model) => new { data_id = 1 };
-            Func<GridModel, Object> actual = htmlGrid.RowAttributed(expected).Grid.Rows.Attributes;
+            Func<GridModel, Object>? expected = (model) => new { data_id = 1 };
+            Func<GridModel, Object>? actual = htmlGrid.RowAttributed(expected).Grid.Rows.Attributes;
 
             Assert.Same(expected, actual);
         }
@@ -158,7 +158,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void RowAttributed_ReturnsHtmlGrid()
         {
             Object expected = htmlGrid;
-            Object actual = htmlGrid.RowAttributed(null);
+            Object actual = htmlGrid.RowAttributed(model => new { });
 
             Assert.Same(expected, actual);
         }
@@ -169,8 +169,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             htmlGrid.Grid.Attributes["width"] = 10;
             htmlGrid.Grid.Attributes["class"] = "test";
 
-            IDictionary<String, Object> actual = htmlGrid.Attributed(new { width = 1 }).Grid.Attributes;
-            IDictionary<String, Object> expected = new Dictionary<String, Object> { ["width"] = 1, ["class"] = "test" };
+            IDictionary<String, Object?> actual = htmlGrid.Attributed(new { width = 1 }).Grid.Attributes;
+            IDictionary<String, Object?> expected = new Dictionary<String, Object?> { ["width"] = 1, ["class"] = "test" };
 
             Assert.Equal(expected, actual);
         }
@@ -213,8 +213,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         {
             htmlGrid.Grid.Attributes["class"] = current;
 
-            String expected = cssClasses;
-            String actual = htmlGrid.AppendCss(toAppend).Grid.Attributes["class"].ToString();
+            String? expected = cssClasses;
+            String? actual = htmlGrid.AppendCss(toAppend).Grid.Attributes["class"]?.ToString();
 
             Assert.Equal(expected, actual);
         }
@@ -231,8 +231,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void Css_SetsCssClasses()
         {
-            String actual = htmlGrid.Css(" table ").Grid.Attributes["class"].ToString();
-            String expected = "table";
+            String? expected = "table";
+            String? actual = htmlGrid.Css(" table ").Grid.Attributes["class"]?.ToString();
 
             Assert.Equal(expected, actual);
         }
@@ -241,7 +241,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void Css_ReturnsHtmlGrid()
         {
             Object expected = htmlGrid;
-            Object actual = htmlGrid.Css(null);
+            Object actual = htmlGrid.Css("");
 
             Assert.Same(expected, actual);
         }
@@ -249,8 +249,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void Empty_SetsEmptyText()
         {
-            String actual = htmlGrid.Empty("Text").Grid.EmptyText;
-            String expected = "Text";
+            String? expected = "Text";
+            String? actual = htmlGrid.Empty("Text").Grid.EmptyText;
 
             Assert.Equal(expected, actual);
         }
@@ -294,8 +294,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         [Fact]
         public void Id_SetsId()
         {
-            String actual = htmlGrid.Id("Test").Grid.Id;
-            String expected = "Test";
+            String? expected = "Test";
+            String? actual = htmlGrid.Id("Test").Grid.Id;
 
             Assert.Equal(expected, actual);
         }
@@ -327,7 +327,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
         public void UsingProcessor_ReturnsHtmlGrid()
         {
             Object expected = htmlGrid;
-            Object actual = htmlGrid.UsingProcessor(null);
+            Object actual = htmlGrid.UsingProcessor(Substitute.For<IGridProcessor<GridModel>>());
 
             Assert.Same(expected, actual);
         }
@@ -408,7 +408,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             htmlGrid.Pageable(pager => { });
 
             IGridPager<GridModel> expected = new GridPager<GridModel>(htmlGrid.Grid);
-            IGridPager<GridModel> actual = htmlGrid.Grid.Pager;
+            IGridPager<GridModel> actual = htmlGrid.Grid.Pager!;
 
             Assert.Equal(expected.FirstDisplayPage, actual.FirstDisplayPage);
             Assert.Equal(expected.PartialViewName, actual.PartialViewName);
@@ -444,8 +444,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             htmlGrid.Pageable(pager => { });
 
-            Object actual = htmlGrid.Grid.Processors.Single();
-            Object expected = htmlGrid.Grid.Pager;
+            Object? actual = htmlGrid.Grid.Processors.Single();
+            Object? expected = htmlGrid.Grid.Pager;
 
             Assert.Same(expected, actual);
         }
@@ -481,7 +481,7 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             htmlGrid.Pageable();
 
             IGridPager<GridModel> expected = new GridPager<GridModel>(htmlGrid.Grid);
-            IGridPager<GridModel> actual = htmlGrid.Grid.Pager;
+            IGridPager<GridModel> actual = htmlGrid.Grid.Pager!;
 
             Assert.Equal(expected.FirstDisplayPage, actual.FirstDisplayPage);
             Assert.Equal(expected.PartialViewName, actual.PartialViewName);
@@ -501,8 +501,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
 
             htmlGrid.Pageable();
 
-            Object actual = htmlGrid.Grid.Processors.Single();
-            Object expected = htmlGrid.Grid.Pager;
+            Object? actual = htmlGrid.Grid.Processors.Single();
+            Object? expected = htmlGrid.Grid.Pager;
 
             Assert.Same(expected, actual);
         }
@@ -515,8 +515,8 @@ namespace NonFactors.Mvc.Grid.Tests.Unit
             htmlGrid.Pageable();
             htmlGrid.Pageable();
 
-            Object actual = htmlGrid.Grid.Processors.Single();
-            Object expected = htmlGrid.Grid.Pager;
+            Object? actual = htmlGrid.Grid.Processors.Single();
+            Object? expected = htmlGrid.Grid.Pager;
 
             Assert.Same(expected, actual);
         }
