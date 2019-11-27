@@ -1,5 +1,5 @@
 /*!
- * Mvc.Grid 7.1.1
+ * Mvc.Grid 7.1.2
  * https://github.com/NonFactors/MVC5.Grid
  *
  * Copyright © NonFactors
