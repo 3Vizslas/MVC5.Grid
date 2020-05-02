@@ -5,7 +5,7 @@
     Int32 currentPage = Model.CurrentPage;
     Int32 firstDisplayPage = Model.FirstDisplayPage;
 }
-    <div class="mvc-grid-pager @Model.CssClasses" data-show-page-sizes="@Model.ShowPageSizes">
+    <div class="mvc-grid-pager @Model.CssClasses" data-show-page-sizes="@Model.ShowPageSizes" data-total-rows="@Model.TotalRows">
     @if (totalPages > 0)
     {
         if (currentPage > 1)

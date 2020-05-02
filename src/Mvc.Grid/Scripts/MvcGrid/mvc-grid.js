@@ -1,5 +1,5 @@
 /*!
- * Mvc.Grid 7.1.2
+ * Mvc.Grid 7.1.3
  * https://github.com/NonFactors/MVC5.Grid
  *
  * Copyright © NonFactors
@@ -557,6 +557,7 @@ var MvcGridPager = (function () {
         pager.grid = grid;
         pager.element = element;
         pager.pages = element.querySelectorAll('[data-page]');
+        pager.totalRows = parseInt(element.dataset.totalRows);
         pager.showPageSizes = element.dataset.showPageSizes == 'True';
         pager.rowsPerPage = element.querySelector('.mvc-grid-pager-rows');
         pager.currentPage = pager.pages.length ? parseInt(element.querySelector('.active').dataset.page) : 1;
@@ -591,12 +592,21 @@ var MvcGridPager = (function () {
             });
 
             pager.rowsPerPage.addEventListener('change', function () {
-                pager.apply(pager.currentPage);
+                var rows = parseInt(pager.rowsPerPage.value);
+
+                if (rows) {
+                    var totalPages = Math.ceil(pager.totalRows / rows);
+
+                    pager.apply(Math.min(pager.currentPage, totalPages).toString());
+                } else {
+                    pager.apply("1");
+                }
             });
         },
 
         cleanUp: function () {
             delete this.element.dataset.showPageSizes;
+            delete this.element.dataset.totalPages;
         }
     };
 
